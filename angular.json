@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hostel-manager-client"
+    }
+  },
+  "defaultProject": "hostel-manager-client",
+  "cli": {
+    "analytics": "63a82985-5c5b-4f47-afca-68283341f5e9"
+  }
 }

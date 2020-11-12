@@ -1,0 +1,30 @@
+<div [formGroup]="registrationForm">
+
+  <label>
+    Email
+    <input
+      formControlName="email"
+      type="text"
+      placeholder="email address"
+    >
+    <div *ngIf="registrationForm.get('email') as control">
+    </div>
+  </label>
+
+  <label>
+    Password
+    <input
+      formControlName="password"
+      type="password"
+      placeholder="secret password">
+    <div *ngIf="registrationForm.get('password').errors as errors">
+    </div>
+  </label>
+
+  <button
+    [disabled]="registrationForm.invalid"
+    (click)="register()">
+    validate
+  </button>
+
+</div>
