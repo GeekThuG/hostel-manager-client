@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-user-credentials',
@@ -6,13 +7,26 @@ import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./user-credentials.component.sass']
 })
 export class UserCredentialsComponent implements OnInit {
-  user = {
-    password: '',
-    email: ''
-  };
-  constructor() { }
+
+  formRegister: FormGroup;
+  @Input() title: string;
+  @Input() submitLabel: string;
+  @Output() registrationForm: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
+
+
+  constructor(private readonly fb: FormBuilder) { }
 
   ngOnInit(): void {
+    const {required, minLength, email} = Validators;
+    this.formRegister = this.fb.group({
+      email: ['', [email, required]],
+      password: ['', [minLength(8), required]],
+    });
+  }
+
+  sendCredentials(): void {
+    // tslint:disable-next-line:no-unused-expression
+    this.registrationForm.emit(this.formRegister);
   }
 
 }
