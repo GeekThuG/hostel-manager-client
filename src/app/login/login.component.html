@@ -2,4 +2,9 @@
   [submitLabel] = "submitLabel"
   [title]="title"
   (registrationForm)="login($event)">
+
+  <div *ngIf="notLogin">
+    <p>{{message}}</p>
+  </div>
 </app-user-credentials>
+

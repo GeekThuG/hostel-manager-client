@@ -24,3 +24,4 @@ export class RegisterComponent implements OnInit {
     this.userService.register(email, password);
   }
 }
+

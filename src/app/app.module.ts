@@ -8,13 +8,23 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserCredentialsComponent } from './user-credentials/user-credentials.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LogoutComponent } from './logout/logout.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RoomsListComponent } from './dashboard/rooms-list/rooms-list.component';
+import { RoomsDetailComponent } from './dashboard/rooms-detail/rooms-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    UserCredentialsComponent
+    UserCredentialsComponent,
+    LogoutComponent,
+    DashboardComponent,
+    RoomsListComponent,
+    RoomsDetailComponent,
+
   ],
   imports: [
     BrowserModule,
