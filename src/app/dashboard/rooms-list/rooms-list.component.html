@@ -1,1 +1,36 @@
-<p>rooms-list works!</p>
+
+<h3>Liste des chambres</h3>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>NOM</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let room of list|async; let even=even" [class.even]="even">
+    <td>{{ room.id }}</td>
+    <td>{{ room.name }}</td>
+    <td>
+      <button [routerLink]="['/', 'dashboard', 'roomDetail', room.id]">
+         Détail
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br/>
+
+<h3>Créer une chambre</h3>
+name: <input
+  [formControl]="nameControl"
+  type="name">
+<button (click)="createRoom()" [disabled]="nameControl.invalid">Valider</button>
+
+<div class="error" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+<br/>
+<div *ngIf="successMessage">
+  {{ successMessage }}
+</div>

@@ -19,8 +19,8 @@ export class UserCredentialsComponent implements OnInit {
   ngOnInit(): void {
     const {required, minLength, email} = Validators;
     this.formRegister = this.fb.group({
-      email: ['', [email, required]],
-      password: ['', [minLength(8), required]],
+      email: ['toto@test.fr', [email, required]],
+      password: ['123456789', [minLength(8), required]],
     });
   }
 

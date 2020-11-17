@@ -1,10 +1,14 @@
+<div class="error" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
 <app-user-credentials
   [submitLabel] = "submitLabel"
   [title]="title"
   (registrationForm)="login($event)">
-
-  <div *ngIf="notLogin">
-    <p>{{message}}</p>
-  </div>
 </app-user-credentials>
+
+<ng-template #messageTemplate>
+  {{ successMessage }}
+</ng-template>
 

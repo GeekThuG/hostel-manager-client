@@ -2,6 +2,8 @@ import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {UserService} from '../user.service';
 import { Router } from '@angular/router';
+import { Credentials } from '../credentials';
+import {catchError, tap} from 'rxjs/operators';
 
 
 @Component({
@@ -12,8 +14,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   submitLabel = 'Login';
   title = 'Login';
-  notLogin = false;
-  message = 'Erreur de connexion';
+  successMessage = null;
+  errorMessage = null;
 
 
   constructor(private readonly userService: UserService,
@@ -23,9 +25,16 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: FormGroup): void {
+    // reset messages
+    this.successMessage = null;
+    this.errorMessage = null;
     const {email, password} = form.value;
-    this.userService.login(email, password);
-    this.router.navigate(['/dashboard']);
-  }
 
+    this.userService.login(email, password).pipe(
+      tap(() => this.router.navigateByUrl('/dashboard/roomList')),
+      catchError((error) => {
+      return this.errorMessage = 'Erreur de connexion: ' + error ;
+      })
+      ).subscribe();
+  }
 }

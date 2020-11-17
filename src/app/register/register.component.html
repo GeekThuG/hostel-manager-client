@@ -1,5 +1,13 @@
+<div class="error" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
 <app-user-credentials
   [submitLabel] = "submitLabel"
   [title]="title"
   (registrationForm)="register($event)">
 </app-user-credentials>
+
+<div *ngIf="successMessage">
+  {{ successMessage }}
+</div>
